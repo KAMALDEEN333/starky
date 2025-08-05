@@ -31,6 +31,9 @@ import {
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { PageTransition } from "@/components/ui/page-transition"
+import { AnimatedSection } from "@/components/ui/animated-section"
+import { StaggeredContainer } from "@/components/ui/staggered-container"
 
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -147,9 +150,10 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50/30 to-orange-50/30">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-amber-50/30 to-orange-50/30">
+        {/* Header */}
+        <header className="bg-white border-b border-slate-200 sticky top-0 z-50 animate-slide-in-down">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -244,29 +248,29 @@ export default function DashboardPage() {
           </div>
 
           {/* Portfolio Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggeredContainer staggerDelay={100} animation="scale-in" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {portfolioStats.map((stat, index) => (
-              <Card key={index} className="border-0 shadow-sm">
+              <Card key={index} className="border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-600">{stat.title}</CardTitle>
-                  <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                  <CardTitle className="text-sm font-medium text-gray-600 group-hover:text-gray-800 transition-colors duration-300">{stat.title}</CardTitle>
+                  <stat.icon className={`h-4 w-4 ${stat.color} group-hover:animate-bounce transition-all duration-300`} />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                  <div className="text-2xl font-bold text-gray-900 group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
                   <div className="flex items-center space-x-1">
                     {stat.trend === "up" ? (
-                      <ArrowUpRight className="w-3 h-3 text-green-600" />
+                      <ArrowUpRight className="w-3 h-3 text-green-600 group-hover:animate-pulse" />
                     ) : (
-                      <ArrowDownRight className="w-3 h-3 text-red-600" />
+                      <ArrowDownRight className="w-3 h-3 text-red-600 group-hover:animate-pulse" />
                     )}
-                    <p className={`text-xs font-medium ${stat.trend === "up" ? "text-green-600" : "text-red-600"}`}>
+                    <p className={`text-xs font-medium transition-all duration-300 ${stat.trend === "up" ? "text-green-600 group-hover:text-green-700" : "text-red-600 group-hover:text-red-700"}`}>
                       {stat.change} today
                     </p>
                   </div>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </StaggeredContainer>
 
           {/* Main Dashboard Content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -413,7 +417,8 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </PageTransition>
   )
 }

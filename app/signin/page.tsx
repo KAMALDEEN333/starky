@@ -12,6 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Eye, EyeOff, BarChart3, Wallet, Shield } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { PageTransition } from "@/components/ui/page-transition"
+import { AnimatedSection } from "@/components/ui/animated-section"
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -32,23 +34,25 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-              <BarChart3 className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              Nairo Exchange
-            </span>
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back, Trader</h1>
-          <p className="text-gray-600">Sign in to access your trading dashboard</p>
-        </div>
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Header */}
+          <AnimatedSection animation="fade-in-down" className="text-center mb-8">
+            <Link href="/" className="inline-flex items-center space-x-2 mb-6 group">
+              <div className="w-10 h-10 bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 animate-float">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                Nairo Exchange
+              </span>
+            </Link>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back, Trader</h1>
+            <p className="text-gray-600">Sign in to access your trading dashboard</p>
+          </AnimatedSection>
 
-        <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
+          <AnimatedSection animation="scale-in" delay={300}>
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm hover:shadow-3xl transition-all duration-500">
           <CardHeader className="space-y-1 pb-6">
             <CardTitle className="text-2xl text-center font-bold text-gray-900">Sign In</CardTitle>
             <CardDescription className="text-center text-gray-600">Access your crypto trading account</CardDescription>
@@ -170,8 +174,9 @@ export default function SignInPage() {
             <Shield className="w-4 h-4" />
             <span className="text-sm font-medium">Your funds are secured by industry-leading encryption</span>
           </div>
+          </AnimatedSection>
         </div>
       </div>
-    </div>
+    </PageTransition>
   )
 }

@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge"
 import { BarChart3, Shield, Zap, Globe, Users, Award, Lock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { PageTransition } from "@/components/ui/page-transition"
+import { AnimatedSection } from "@/components/ui/animated-section"
+import { StaggeredContainer } from "@/components/ui/staggered-container"
 
 export default function AboutPage() {
   const teamMembers = [
@@ -43,7 +46,8 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -77,26 +81,32 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center">
-          <Badge className="mb-4 bg-amber-100 text-amber-800 border-amber-200" variant="secondary">
-            About Nairo Exchange
-          </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Building the Future of
-            <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              {" "}
-              Crypto Trading
-            </span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Founded in 2021, Nairo Exchange has grown to become one of the world's leading cryptocurrency trading
-            platforms, serving over 2 million traders across 50+ countries with institutional-grade security and
-            lightning-fast execution.
-          </p>
-        </div>
-      </section>
+        {/* Hero Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto text-center">
+            <AnimatedSection animation="bounce-in" delay={200}>
+              <Badge className="mb-4 bg-amber-100 text-amber-800 border-amber-200 animate-glow" variant="secondary">
+                About Nairo Exchange
+              </Badge>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-in-up" delay={400}>
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Building the Future of
+                <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">
+                  {" "}
+                  Crypto Trading
+                </span>
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-in-up" delay={600}>
+              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Founded in 2021, Nairo Exchange has grown to become one of the world's leading cryptocurrency trading
+                platforms, serving over 2 million traders across 50+ countries with institutional-grade security and
+                lightning-fast execution.
+              </p>
+            </AnimatedSection>
+          </div>
+        </section>
 
       {/* Mission Section */}
       <section className="py-20 px-4 bg-white">
@@ -146,52 +156,52 @@ export default function AboutPage() {
               These principles guide everything we do at Nairo Exchange
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow text-center">
+          <StaggeredContainer staggerDelay={150} animation="scale-in" className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 text-center group cursor-pointer">
               <CardHeader>
-                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-amber-600" />
+                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-200 transition-colors duration-300 group-hover:animate-bounce">
+                  <Shield className="w-6 h-6 text-amber-600 group-hover:text-amber-700 transition-colors duration-300" />
                 </div>
-                <CardTitle>Security First</CardTitle>
+                <CardTitle className="group-hover:text-amber-600 transition-colors duration-300">Security First</CardTitle>
                 <CardDescription>
                   Your funds and data are protected by military-grade encryption and multi-signature wallets.
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow text-center">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 text-center group cursor-pointer">
               <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors duration-300 group-hover:animate-bounce">
+                  <Zap className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />
                 </div>
-                <CardTitle>Innovation</CardTitle>
+                <CardTitle className="group-hover:text-blue-600 transition-colors duration-300">Innovation</CardTitle>
                 <CardDescription>
                   We continuously push the boundaries of what's possible in cryptocurrency trading technology.
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow text-center">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 text-center group cursor-pointer">
               <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors duration-300 group-hover:animate-bounce">
+                  <Users className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors duration-300" />
                 </div>
-                <CardTitle>Community</CardTitle>
+                <CardTitle className="group-hover:text-green-600 transition-colors duration-300">Community</CardTitle>
                 <CardDescription>
                   Our users are at the heart of everything we do. We build for traders, by traders.
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow text-center">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 text-center group cursor-pointer">
               <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Globe className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors duration-300 group-hover:animate-bounce">
+                  <Globe className="w-6 h-6 text-purple-600 group-hover:text-purple-700 transition-colors duration-300" />
                 </div>
-                <CardTitle>Transparency</CardTitle>
+                <CardTitle className="group-hover:text-purple-600 transition-colors duration-300">Transparency</CardTitle>
                 <CardDescription>
                   We believe in open communication and full transparency in all our operations and policies.
                 </CardDescription>
               </CardHeader>
             </Card>
-          </div>
+          </StaggeredContainer>
         </div>
       </section>
 
@@ -401,6 +411,7 @@ export default function AboutPage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </PageTransition>
   )
 }
